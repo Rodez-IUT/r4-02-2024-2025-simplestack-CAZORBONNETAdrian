@@ -60,4 +60,28 @@ class SimpleStackTest {
         //assertThrows(EmptyStackException.class, ()->stack.pop(), "EmptyStackException not thrown");
         assertThrows(EmptyStackException.class, stack::pop, "EmptyStackException not thrown");
     }
+
+    @Test
+    @DisplayName("Test pop an items")
+    public void testPop() throws EmptyStackException {
+
+        // Given stack with an item
+        Stack stack = new SimpleStack();
+        Item item = new SimpleItem();
+        stack.push(item);
+        // When an item is poped in the stack
+
+
+        // Then…
+        assertSame( item, stack.pop(),"The pushed item must be the same of on top of the stack");
+
+        stack.push(item);
+        stack.push(item);
+        stack.pop();
+        assertEquals(1, stack.getSize(),"The stack must constain 1 item");
+
+        stack.pop();
+        assertTrue(stack.isEmpty(), "The stack must be empty");
+
+    }
 }
