@@ -3,7 +3,7 @@ package org.example;
 /**
  * Interface describing behaviour of a stack
  */
-public interface Stack {
+public interface Stack<T> {
 
     /**
      * Tests if this stack is empty
@@ -19,18 +19,18 @@ public interface Stack {
      * Pushes an item onto the top of this stack.
      * null item is allowed.
      */
-    void push(Item item);
+    void push(T item);
 
     /**
      * Looks at the object at the top of this stack without removing it from the stack.
      */
-    Item peek() throws EmptyStackException;
+    T peek() throws EmptyStackException;
 
     /**
      * Removes the object at the top of this stack and returns
      * that object as the value of this function.
      * @throws EmptyStackException if this stack is empty.
      */
-    Item pop() throws EmptyStackException;
+    T pop() throws EmptyStackException;
 
 }
