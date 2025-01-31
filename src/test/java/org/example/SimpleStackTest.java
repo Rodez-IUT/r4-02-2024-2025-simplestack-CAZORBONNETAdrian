@@ -105,23 +105,30 @@ class SimpleStackTest<T> {
 
         // Given stack with 2 item
         Stack<T> stack = new SimpleStack<T>();
-        T item = (T) new SimpleItem();
+        T item1 = (T) new SimpleItem();
+        T item2 = (T) new SimpleItem();
 
-        stack.push(item);
-        stack.push(item);
+        stack.push(item1);
+        stack.push(item2);
 
-        stack.pop();
+        T firstItemPoped = stack.pop();
 
         // When the last item is poped
-        stack.pop();
+        T secondItemPoped = stack.pop();
         // Then the stack must be empty
         assertTrue(stack.isEmpty(), "The stack must be empty");
+
+        // And the first item poped must be the same of the first item pushed
+        assertSame(firstItemPoped, item2,"The pushed item must be the same of on top of the stack");
+
+        // And the second item poped must be the same of the second item pushed
+        assertSame(secondItemPoped, item1,"The pushed item must be the same of on top of the stack");
 
     }
 
     @Test
-    @DisplayName("Test peek an items on none empty stack")
-    public void testPeek() throws EmptyStackException {
+    @DisplayName("Test peek an items on non empty stack")
+    public void testPeekOnNonEmptyStack() throws EmptyStackException {
 
         // Given stack with an item
         Stack<T> stack = new SimpleStack<T>();
@@ -129,8 +136,9 @@ class SimpleStackTest<T> {
         stack.push(item);
 
         // When an item is peeked in the stack
+        T itemPeek = stack.peek();
         // Then the item must be the same of on top of the stack
-        assertSame(item, stack.peek(),"The pushed item must be the same of on top of the stack");
+        assertSame(item, itemPeek,"The pushed item must be the same of on top of the stack");
     }
 
     @Test
