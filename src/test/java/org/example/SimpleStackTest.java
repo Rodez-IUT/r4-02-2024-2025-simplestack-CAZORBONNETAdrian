@@ -73,12 +73,15 @@ class SimpleStackTest<T> {
         // Then…
         assertSame( item, stack.pop(),"The pushed item must be the same of on top of the stack");
 
+        // When an item is poped in the stack of 2 item
         stack.push(item);
         stack.push(item);
         stack.pop();
+        // Then the stack must contain 1 item
         assertEquals(1, stack.getSize(),"The stack must constain 1 item");
-
+        // When the last item is poped
         stack.pop();
+        // Then the stack must be empty
         assertTrue(stack.isEmpty(), "The stack must be empty");
 
     }
