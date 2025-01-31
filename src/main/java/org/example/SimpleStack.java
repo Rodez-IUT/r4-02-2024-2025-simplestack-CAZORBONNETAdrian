@@ -41,6 +41,9 @@ public class SimpleStack<T> implements Stack<T> {
      */
     @Override
     public T peek() throws EmptyStackException {
+        if (listeItem.isEmpty()) {
+            throw new EmptyStackException();
+        }
         return listeItem.get(getSize() - 1);
     }
 

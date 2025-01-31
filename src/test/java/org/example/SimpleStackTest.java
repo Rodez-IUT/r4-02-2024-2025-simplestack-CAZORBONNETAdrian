@@ -42,7 +42,7 @@ class SimpleStackTest<T> {
         // When we add the new item
         stack.push(item2);
 
-        // then...
+        // then the stack must contain 2 items
         assertFalse(stack.isEmpty(), "The stack must be not empty");
         assertEquals(2, stack.getSize(),"The stack must constain 2 items");
         assertSame( item2, stack.peek(),"The pushed item must be on top of the stack");
@@ -70,38 +70,36 @@ class SimpleStackTest<T> {
         stack.push(item);
         // When an item is poped in the stack
 
-        // Then…
+        // Then the item poped must be the same of on top of the stack
         assertSame(item, stack.pop(),"The pushed item must be the same of on top of the stack");
+
+        // And the stack must be empty
+        assertTrue(stack.isEmpty(), "The stack must be empty");
 
     }
     @Test
     @DisplayName("Test pop an items with a stack of 2 items")
     public void testPopStack2Items() throws EmptyStackException {
 
-        // Given stack with an item
+        // Given stack with 2 item
         Stack<T> stack = new SimpleStack<T>();
         T item = (T) new SimpleItem();
 
         stack.push(item);
         stack.push(item);
 
-        // When an item is poped in the stack of 2 item
+        // When an item is poped
         stack.pop();
 
         // Then the stack must contain 1 item
         assertEquals(1, stack.getSize(),"The stack must constain 1 item");
-
-        // When the last item is poped
-        stack.pop();
-        // Then the stack must be empty
-        assertTrue(stack.isEmpty(), "The stack must be empty");
     }
 
     @Test
-    @DisplayName("Test pop an items and clear the stack")
-    public void testPopAndClearStack() throws EmptyStackException {
+    @DisplayName("Test pop all the items of the stack so clear the stack")
+    public void testPop2Items() throws EmptyStackException {
 
-        // Given stack with an item
+        // Given stack with 2 item
         Stack<T> stack = new SimpleStack<T>();
         T item = (T) new SimpleItem();
 
@@ -115,6 +113,30 @@ class SimpleStackTest<T> {
         // Then the stack must be empty
         assertTrue(stack.isEmpty(), "The stack must be empty");
 
+    }
+
+    @Test
+    @DisplayName("Test peek an items")
+    public void testPeek() throws EmptyStackException {
+
+        // Given stack with an item
+        Stack<T> stack = new SimpleStack<T>();
+        T item = (T) new SimpleItem();
+        stack.push(item);
+
+        // When an item is peeked in the stack
+        // Then the item must be the same of on top of the stack
+        assertSame(item, stack.peek(),"The pushed item must be the same of on top of the stack");
+    }
+
+    @Test
+    @DisplayName("Test peek an items with an empty stack")
+    public void testPeekEmptyStack()  {
+        // Given an empty stack
+        Stack<T> stack = new SimpleStack<T>();
+
+        // When we peek the stack, should throws an EmptyStackException.
+        assertThrows(EmptyStackException.class, stack::peek, "EmptyStackException not thrown");
     }
 
 }
